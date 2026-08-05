@@ -51,7 +51,7 @@ export function FeaturesContent() {
       </div>
 
       {/* 3-Card Grid (Scan, Detect, Remediate) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
         
         {/* Card 1: Scan */}
         <div className="glass-panel p-8 rounded-3xl border border-slate-200 bg-white flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
@@ -78,20 +78,6 @@ export function FeaturesContent() {
           <div className="mt-8 p-4 rounded-2xl bg-slate-800 border border-slate-700 text-xs font-bold text-rose-400 flex items-center justify-between">
             <span>High Risk Assessment</span>
             <span className="px-2 py-0.5 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-300">[4]</span>
-          </div>
-        </div>
-
-        {/* Card 3: Remediate (Purple Card) */}
-        <div className="p-8 rounded-3xl border border-purple-500/40 bg-purple-600 text-white flex flex-col justify-between shadow-xl">
-          <div>
-            <h3 className="text-2xl font-bold text-white mb-3">Remediate</h3>
-            <p className="text-purple-100 text-sm leading-relaxed font-medium">
-              Fix issues faster with guided recommendations and integrations. Track progress, verify fixes, and continuously improve your security posture.
-            </p>
-          </div>
-          <div className="mt-8 p-4 rounded-2xl bg-purple-700/60 border border-purple-400/40 text-xs font-bold text-white flex items-center justify-between">
-            <span>Auto Fix Scripting</span>
-            <span className="text-purple-200">Active</span>
           </div>
         </div>
 
