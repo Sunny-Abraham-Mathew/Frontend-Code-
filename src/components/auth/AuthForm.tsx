@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CheckCircle2, Apple } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 interface AuthFormProps {
   initialMode?: "login" | "register";
@@ -152,11 +152,13 @@ export function AuthForm({ initialMode = "login" }: AuthFormProps) {
         {/* Secondary OAuth Button */}
         <button
           type="button"
-          onClick={() => setSubmittedMessage("Apple OAuth sign in requested.")}
+          onClick={() => setSubmittedMessage("Google OAuth sign in requested.")}
           className="bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 w-full text-sm transition-all cursor-pointer"
         >
-          <Apple className="w-4 h-4 text-white" />
-          <span>Sign in with Apple</span>
+          <span className="w-4 h-4 flex items-center justify-center font-bold text-red-500 text-lg">
+            G
+          </span>
+          <span>Sign in with Google</span>
         </button>
 
         {/* Footer Toggle Text */}
