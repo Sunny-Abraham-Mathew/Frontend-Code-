@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onStartScan }: HeroSectionProps) {
   const [urlInput, setUrlInput] = useState("");
-
+  const [showScanOptions, setShowScanOptions] = useState(false);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onStartScan(urlInput, e);
@@ -28,24 +28,28 @@ export function HeroSection({ onStartScan }: HeroSectionProps) {
       </p>
 
       {/* Centered URL Input Bar */}
-      <form onSubmit={handleSubmit} className="mt-8 w-full max-w-xl mx-auto">
+      <form className="mt-8 w-full max-w-xl mx-auto">
         <div className="rounded-2xl p-1.5 flex items-center gap-2 border border-white/10 bg-black/60 backdrop-blur-2xl shadow-2xl focus-within:border-white/30 transition-all">
-          <input
-            type="url"
-            placeholder="Enter URL to scan..."
-            aria-label="Enter website URL for scanning"
-            value={urlInput}
-            onChange={(e) => setUrlInput(e.target.value)}
-            className="bg-transparent text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none w-full px-4 py-2 font-medium"
-            required
-          />
-          <button
-            type="submit"
-            className="bg-purple-600 hover:bg-purple-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5 shadow-md cursor-pointer whitespace-nowrap min-h-[44px]"
-          >
-            <span>Scan</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </button>
+
+           <input
+             type="url"
+             placeholder="Enter URL to scan..."
+             aria-label="Enter website URL for scanning"
+             value={urlInput}
+             onChange={(e) => setUrlInput(e.target.value)}
+             className="bg-transparent text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none w-full px-4 py-2 font-medium"
+             required
+           />
+
+           <button
+             type="button"
+             onClick={() => setShowScanOptions(true)}
+             className="bg-purple-600 hover:bg-purple-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5 shadow-md cursor-pointer whitespace-nowrap min-h-[44px]"
+            >
+             <span>Scan</span>
+             <ArrowUpRight className="w-4 h-4" />
+           </button>
+
         </div>
       </form>
 
@@ -129,8 +133,128 @@ export function HeroSection({ onStartScan }: HeroSectionProps) {
             </div>
           </div>
         </div>
+              
 
       </div>
+
+
+      {/* Scan Configuration Popup */}
+      {showScanOptions && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+
+          <div className="w-full max-w-lg rounded-3xl bg-slate-900 border border-white/10 p-8 shadow-2xl text-left">
+
+            <h2 className="text-2xl font-bold text-white mb-6">
+              Scan Configuration
+            </h2>
+
+            {/* Scope */}
+            <div className="mb-4">
+              <label className="text-sm text-slate-300">
+                Scope
+              </label>
+              <input
+                type="text"
+                placeholder="example.com"
+                className="mt-2 w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white outline-none"
+              />
+            </div>
+
+
+            {/* Scan Type */}
+            <div className="mb-4">
+              <label className="text-sm text-slate-300">
+                Scan Type
+              </label>
+
+              <select className="mt-2 w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white">
+                <option>Full Scan</option>
+                <option>Quick Scan</option>
+                <option>Passive Scan</option>
+              </select>
+            </div>
+
+
+            {/* Authentication Type */}
+            <div className="mb-4">
+              <label className="text-sm text-slate-300">
+                Authentication Type
+              </label>
+
+              <input
+                type="text"
+                placeholder="username & password or cookie"
+                className="mt-2 w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white outline-none"
+              />
+            </div>
+
+
+            {/* Crawl Depth */}
+            <div className="mb-4">
+              <label className="text-sm text-slate-300">
+                Crawl Depth
+              </label>
+
+              <input
+                type="number"
+                placeholder="5"
+                className="mt-2 w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white outline-none"
+              />
+            </div>
+
+
+            {/* File Extensions */}
+            <div className="mb-4">
+              <label className="text-sm text-slate-300">
+                File Extensions to Exclude
+              </label>
+
+              <input
+                type="text"
+                placeholder=".jpg, .png, .css"
+                className="mt-2 w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white outline-none"
+              />
+            </div>
+
+
+            {/* Exclude URLs */}
+            <div className="mb-6">
+              <label className="text-sm text-slate-300">
+                Exclude URLs
+              </label>
+
+              <textarea
+                placeholder="Enter URLs to exclude"
+                className="mt-2 w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white outline-none"
+              />
+            </div>
+
+
+            <div className="flex gap-3">
+
+              <button
+                onClick={() => setShowScanOptions(false)}
+                className="flex-1 py-3 rounded-xl bg-white/10 text-white"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={(e) => handleSubmit(e as any)}
+                className="flex-1 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold"
+              >
+                Start Scan
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+
     </div>
   );
 }
+       
